@@ -24,7 +24,7 @@ steps:
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
     - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
-    
+
   - id: Build
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
@@ -36,7 +36,7 @@ steps:
 
   - id: Apply deploy
     name: gcr.io/cloud-builders/gke-deploy
-    args: ["apply", "--filename=kube-deployment.yml", "--namespace=jeremy"]
+    args: ["apply", "--filename=kube-deployment.yml", "--cluster=maetad-cluster", "--location=asia-southeast1", "--namespace=maetad"]
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
     - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
