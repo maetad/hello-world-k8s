@@ -28,11 +28,11 @@ steps:
   - id: Build
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
-    args: ["-c", "docker build -t asia.gcr.io/effective-might-323902/hello-world-k8s-jeremy . -f Dockerfile"]
+    args: ["-c", "docker build -t asia.gcr.io/effective-might-323902/hello-world-k8s-maetad . -f Dockerfile"]
 
   - id: Push
     name: gcr.io/cloud-builders/docker
-    args: ["push", "asia.gcr.io/effective-might-323902/hello-world-k8s-jeremy"]
+    args: ["push", "asia.gcr.io/effective-might-323902/hello-world-k8s-maetad"]
 
   - id: Apply deploy
     name: gcr.io/cloud-builders/gke-deploy
