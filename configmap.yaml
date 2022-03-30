@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  FIRSTNAME: Clement
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-03-11T08:28:36Z"
+  name: hello-world-k8s-jeremy-env
+  namespace: jeremy
+  resourceVersion: "575204"
+  uid: 80b48bb7-27fc-4546-b419-09b2827701ff
