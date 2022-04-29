@@ -5,4 +5,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: "2022-03-11T08:28:36Z"
   name: hello-world-k8s-maetad-env
-  namespace: default
+  namespace: maetad
