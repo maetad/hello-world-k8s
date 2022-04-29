@@ -19,7 +19,7 @@ func main() {
 // helloworld just displays a banner message for testing
 func helloworld(w http.ResponseWriter, r *http.Request) {
 	firstname := os.Getenv("FIRSTNAME")
-	lastname := os.Getenv("FIRSTNAME")
+	lastname := os.Getenv("LASTNAME")
 	status := http.StatusOK
 	w.WriteHeader(status)
 	w.Write([]byte(fmt.Sprintf(`
