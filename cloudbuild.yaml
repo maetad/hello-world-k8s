@@ -1,11 +1,15 @@
 steps:
 
-  - id: Generate application secret
-    name: 'gcr.io/cloud-builders/kubectl'
-    args: ['apply', '-f', 'secret.yaml', '--namespace', '$_K8S_NAMESPACE']
-    env:
-    - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
+  - id: decipher secret
+    name: gcr.io/cloud-builders/gcloud
+    args:
+    - kms
+    - decrypt
+    - "--ciphertext-file=secret.yaml.encrypted"
+    - "--plaintext-file=secret.yaml"
+    - "--location=$_GKE_LOCATION"
+    - "--keyring=jeremy-key-ring"
+    - "--key=hello-world-k8s"
 
   - id: Generate application configMap
     name: 'gcr.io/cloud-builders/kubectl'
