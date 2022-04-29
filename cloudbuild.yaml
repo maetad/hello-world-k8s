@@ -8,7 +8,7 @@ steps:
     - "--ciphertext-file=secret.yaml.encrypted"
     - "--plaintext-file=secret.yaml"
     - "--location=$_GKE_LOCATION"
-    - "--keyring=jeremy-key-ring"
+    - "--keyring=prohmpossadhorn-key-ring"
     - "--key=hello-world-k8s"
 
   - id: Generate application configMap
