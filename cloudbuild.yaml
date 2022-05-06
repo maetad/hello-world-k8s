@@ -17,12 +17,12 @@ steps:
     - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
     - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
 
-  - id: Generate application configMap
-    name: 'gcr.io/cloud-builders/kubectl'
-    args: ['apply', '-f', 'configmap.yaml', '--namespace', '$_K8S_NAMESPACE']
-    env:
-    - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
+  # - id: Generate application configMap
+  #   name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'configmap.yaml', '--namespace', '$_K8S_NAMESPACE']
+  #   env:
+  #   - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
+  #   - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
 
   - id: Build
     name: gcr.io/cloud-builders/docker
@@ -33,9 +33,21 @@ steps:
     name: gcr.io/cloud-builders/docker
     args: ["push", "asia.gcr.io/effective-might-323902/hello-world-k8s-maetad"]
 
+  - id: Generate manifest
+    name: gcr.io/cloud-builders/gke-deploy
+    entrypoint: kustomize
+    args:
+      - build
+      - kubenetes/overlays/$_KUSTOMIZE_ENV
+      - -o
+      - /workspace/kustomize-output.yaml
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
+
   - id: Apply deploy
     name: gcr.io/cloud-builders/gke-deploy
-    args: ["apply", "--filename=kube-deployment.yml", "--cluster=maetad-cluster", "--location=asia-southeast1", "--namespace=maetad"]
+    args: ["apply", "--filename=kustomize-output.yaml", "--cluster=maetad-cluster", "--location=asia-southeast1", "--namespace=maetad"]
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
     - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'

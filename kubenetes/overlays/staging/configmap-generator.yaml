@@ -1,0 +1,6 @@
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: hello-world-k8s-maetad-env
+envs:
+  - application.properties
