@@ -34,14 +34,14 @@ steps:
       - 'build'
       - 'kustomize/overlays/staging'
       - '-o'
-      - '/workspace/kustomize-output.yml'
+      - '/workspace/kustomize-output.yaml'
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
     - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
 
   - id: Apply deploy
     name: gcr.io/cloud-builders/gke-deploy
-    args: ["apply", "--filename=kustomize/base/kube-deployment.yaml", "--namespace=default"]
+    args: ["apply", "--filename=kustomize-output.yaml", "--namespace=default"]
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
     - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
