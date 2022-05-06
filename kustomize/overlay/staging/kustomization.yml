@@ -1,4 +1,0 @@
-bases:
-- ../../base
-patches:
-- path: replicas.yml

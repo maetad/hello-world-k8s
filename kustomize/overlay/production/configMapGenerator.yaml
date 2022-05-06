@@ -1,0 +1,8 @@
+
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: hello-world-k8s-prohmpossadhorn-env
+envs:
+- name.env
+  
