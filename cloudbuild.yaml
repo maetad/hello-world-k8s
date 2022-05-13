@@ -10,20 +10,6 @@ steps:
     - "--keyring=maetad-key-ring"
     - "--key=hello-world-k8s"
 
-  # - id: Generate application secret
-  #   name: 'gcr.io/cloud-builders/kubectl'
-  #   args: ['apply', '-f', 'kubernetes/overlays/$_KUSTOMIZE_ENV/application.secrets', '--namespace', '$_K8S_NAMESPACE']
-  #   env:
-  #   - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
-  #   - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
-
-  # - id: Generate application configMap
-  #   name: 'gcr.io/cloud-builders/kubectl'
-  #   args: ['apply', '-f', 'configmap.yaml', '--namespace', '$_K8S_NAMESPACE']
-  #   env:
-  #   - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_LOCATION'
-  #   - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
-
   - id: Build
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
