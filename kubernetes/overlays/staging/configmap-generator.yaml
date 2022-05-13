@@ -1,5 +1,7 @@
 apiVersion: builtin
 kind: ConfigMapGenerator
+options:
+  disableNameSuffixHash: true
 metadata:
   name: hello-world-k8s-maetad-env
 envs:
