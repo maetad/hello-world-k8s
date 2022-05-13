@@ -25,8 +25,8 @@ func helloworld(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(fmt.Sprintf(`
 	<!DOCTYPE html>
 	<html lang="en">
-		<head><title>Hello %s %s</title></head>
-		<body><h1>Hello %s %s!</h1></body>
+		<head><title>OLA %s %s</title></head>
+		<body><h1>OLA %s %s!</h1></body>
 	</html>
 	`, firstname, lastname, firstname, lastname)))
 }
